@@ -12,6 +12,7 @@ public class User implements Serializable{
 	private String addressLine1;
 	private String addressLine2;
 	private Long phoneNumber;
+	private String gender;
 	//private Roles role;
 	private int r_id;
 	public int getR_id() {
@@ -22,7 +23,6 @@ public class User implements Serializable{
 		this.r_id = r_id;
 	}
 
-	private String gender;
 	
 	public User(){
 		

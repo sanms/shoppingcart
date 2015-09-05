@@ -17,53 +17,99 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-		
+
 	@Override
 	public User getUser(String userName) {
-		String sql="select * from user where email_id=?";
-		
-		User user=jdbcTemplate.queryForObject(sql, new Object[]{userName}, new BeanPropertyRowMapper<User>(User.class));
-		//User user=jdbcTemplate.queryForObject(sql, new Object[]{userName}, new UserRoleMapper());
-		return user;
+
+		try {
+			String sql = "select * from user where email_id=?";
+			User user = jdbcTemplate.queryForObject(sql, new Object[] { userName },
+					new BeanPropertyRowMapper<User>(User.class));
+
+			return user;
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
-	public void insertUser(User user) {
-		
-		String sql="insert into user(user_lname,user_fname,email_id,passwrd,address_line1,address_line2,phone_number,gender,r_id) values(?,?,?,?,?,?,?,?,?)";
-		jdbcTemplate.update(sql, user.getUserLname(),user.getUserFname(),user.getEmailId(),user.getPasswrd(),user.getAddressLine1(),
-				user.getAddressLine2(),user.getPhoneNumber(),user.getGender(),0);
+	public String insertUser(User user) {
+
+		try {
+			String sql = "insert into user(user_lname,user_fname,email_id,passwrd,address_line1,address_line2,phone_number,gender,r_id) values(?,?,?,?,?,?,?,?,?)";
+			jdbcTemplate.update(sql, user.getUserLname(), user.getUserFname(), user.getEmailId(), user.getPasswrd(),
+					user.getAddressLine1(), user.getAddressLine2(), user.getPhoneNumber(), user.getGender(), 0);
+
+			return "USER_INSERTED_SUCCESFULLY";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return "USER_INSERTION_FAILED";
+		}
+
 	}
 
 	@Override
-	public void deleteUser(String userName) {
-		String sql="delete from user where email_id=?";
-		jdbcTemplate.update(sql, userName);
-		
+	public String deleteUser(String userName) {
+		try {
+			String sql = "delete from user where email_id=?";
+			jdbcTemplate.update(sql, userName);
+			return "USER_DELETED_SUCCESFULLY";
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return "USER_DELETION_FAILED";
+		}
+
 	}
 
 	@Override
-	public void updateuser(User user) {
-		// TODO Auto-generated method stub
-		
+	public String updateuser(User user) {
+
+		try {
+			String sql = "update user set user_lname=?,user_fname=?,email_id=?,passwrd=?,address_line1=?,address_line2=?,phone_number=?,gender=?";
+			jdbcTemplate.update(sql, user.getUserLname(), user.getUserFname(), user.getEmailId(), user.getPasswrd(),
+					user.getAddressLine1(), user.getAddressLine2(), user.getPhoneNumber(), user.getGender());
+			return "USER_UPDATED_SUCCESFULLY";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return "USER_UPDATE_FAILED";
+		}
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		String sql="select * from user";
-		List<User> userList=jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
-		return userList;
+
+		try {
+			String sql = "select * from user";
+			List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
+			return userList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
 	public List<User> getUsersByRoleId(int rId) {
-		String sql="select * from user where r_id=?";
-		List<User> userListByRole;
-		userListByRole=jdbcTemplate.query(sql, new Object[]{rId}, new BeanPropertyRowMapper<User>(User.class));
-		
-		return userListByRole;
+
+		try {
+			String sql = "select * from user where r_id=?";
+			List<User> userListByRole;
+			userListByRole = jdbcTemplate.query(sql, new Object[] { rId }, new BeanPropertyRowMapper<User>(User.class));
+
+			return userListByRole;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
 	}
-	
-	
 
 }

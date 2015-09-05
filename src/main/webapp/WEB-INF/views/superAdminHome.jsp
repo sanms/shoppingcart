@@ -78,7 +78,35 @@ Welcome ${dataMap.get("user").getUserFname()}
 </table> 
 </p2>
 <p3>
+<table border="1">
+<thead>
+ <tr><h2>Admin List</h2></tr>
+ <tr>
+    <th>Name</th>
+    <th>Email ID</th>
+    <th>Address</th>
+    <th>Phone number</th>
+    <th>Gender</th>
+  </tr>
+</thead>
 
+ <tbody> 
+ <c:forEach items="${dataMap.get(\"adminList\")}" var="admin">
+    <tr>
+      <td>${admin.getUserFname()} ${admin.getUserLname()}</td>
+      <td>${admin.getEmailId()}</td>
+      <td>${admin.getAddressLine1()} ${admin.getAddressLine2()}</td>
+      <td>${admin.getPhoneNumber()}</td>
+      <td>${admin.getGender()}</td>
+    </tr>
+  </c:forEach> 
+  </tbody>
+</table>
+<table>
+<tr></tr>
+<tr>
+<input type="button" value="Add Admin" onclick="window.location='addAdminForm';" />
+</tr></table> 
 </p3>
 </body>
 </html>

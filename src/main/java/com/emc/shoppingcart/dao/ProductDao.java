@@ -6,10 +6,10 @@ import com.emc.shoppingcart.model.Product;
 
 public interface ProductDao {
 
-	public void addProduct(Product product);
+	public String addProduct(Product product);
 	public List<Product> getProducts();
-	public void deleteProduct(long productId);
-	public void UpdateProduct(Product product);
+	public String deleteProduct(long productId);
+	public String UpdateProduct(Product product);
 	public Product getProductById(int productId);
 	public void addproductToFile(Product product);
 }

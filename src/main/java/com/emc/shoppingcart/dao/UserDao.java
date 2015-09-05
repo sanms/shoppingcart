@@ -8,9 +8,9 @@ import com.emc.shoppingcart.model.User;
 public interface UserDao {
 
 	public User getUser(String userName);
-	public void insertUser(User user);
-	public void deleteUser(String userName);
-	public void updateuser(User user);
+	public String insertUser(User user);
+	public String deleteUser(String userName);
+	public String updateuser(User user);
 	public List<User> getAllUsers();
 	public List<User> getUsersByRoleId(int rId);
 }

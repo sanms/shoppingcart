@@ -15,11 +15,16 @@ public class RolesDaoImpl implements RolesDao{
 	
 	@Override
 	public Roles getRole(int rId) {
-		
+		try{
 		String sql="select * from roles where r_id=?";
-		
 		Roles role=jdbctemplate.queryForObject(sql,new Object[]{rId}, new BeanPropertyRowMapper<Roles>(Roles.class));
 		return role;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 }

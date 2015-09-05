@@ -5,13 +5,12 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.emc.shoppingcart.model.Roles;
 import com.emc.shoppingcart.model.User;
 
-public class UserRoleMapper implements RowMapper {
+public class UserRoleMapper implements RowMapper<User> {
 
 	@Override
-	public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+	public User mapRow(ResultSet rs, int arg1) throws SQLException {
 		User user=new User();
 		//Roles role=new Roles();
 		//role.setrId(rs.getInt("r_id"));

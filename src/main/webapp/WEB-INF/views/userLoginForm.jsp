@@ -22,7 +22,9 @@
             <input type="submit" value="Submit"/>
         </td>
   
- 
+ </tr>
+ <tr>
+ <td/>
    <td>
           <input type="button" value="Register" onclick="window.location='register';" />
    </td>        

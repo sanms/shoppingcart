@@ -1,5 +1,7 @@
 package com.emc.shoppingcart.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,23 +11,41 @@ import com.emc.shoppingcart.dao.ProductDao;
 import com.emc.shoppingcart.model.Product;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	ProductDao productDao;	
-	
-	@Override
+	ProductDao productDao;
+
 	@Transactional
-	public void addProduct(Product product) {
-		
-		productDao.addProduct(product);
-		productDao.addproductToFile(product);
+	public String addProduct(Product product) {
+
+		try {
+			productDao.addProduct(product);
+			// productDao.addproductToFile(product);
+			return "SUCCESFUL_UPDATE";
+		} catch (Exception e) {
+			return "UPDATE_FAILED";
+		}
+	
 	}
 
 	@Override
-	public void RemoveProduct(long productId) {
+	public String RemoveProduct(long productId) {
+
+		return productDao.deleteProduct(productId);
 		
-		productDao.deleteProduct(productId);
+	}
+
+	@Override
+	public List<Product> getProducts() {
+
+		return productDao.getProducts();
+	}
+
+	@Override
+	public String UpdateProduct(Product product) {
+		
+		return productDao.UpdateProduct(product);
 	}
 
 }

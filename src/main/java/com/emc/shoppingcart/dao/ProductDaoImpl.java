@@ -22,66 +22,108 @@ public class ProductDaoImpl implements ProductDao {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public void addProduct(Product product) {
+	public String addProduct(Product product) {
 
-		String sql = "insert into product(p_name,price,category,image_name)values(?,?,?,?) ";
-		jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getCategory(), product.getImageName
-				());
+		try {
+			String sql = "insert into product(p_name,price,category,image_name)values(?,?,?,?) ";
+			jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getCategory(),
+					product.getImageName());
+			return "PRODUCT_UPDATED_SUCCESFULL";
+		} catch (Exception e) {
+			e.printStackTrace();
+			// System.out.println(e.getMessage());
+			return "COULD_NOT_ADD_PRODUCT";
+		}
 	}
 
 	@Override
 	public List<Product> getProducts() {
+		try {
+			String sql = "select * from product";
+			List<Product> productList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class));
 
-		String sql = "select * from product";
-
-		List<Product> productList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class));
-
-		return productList;
+			return productList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			// System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
-	public void deleteProduct(long productId) {
+	public String deleteProduct(long productId) {
 
-		String sql = "delete from product where p_id=?";
-		jdbcTemplate.update(sql,productId);
+		try {
+			String sql = "delete from product where p_id=?";
+			jdbcTemplate.update(sql, productId);
+			return "PRODUCT_DELETED_SUCCESFULLY";
+		} catch (Exception e) {
+			e.printStackTrace();
+			// System.out.println(e.getMessage());
+			return "COULD_NOT_DELETE_PRODUCT";
+		}
+
 	}
 
 	@Override
-	public void UpdateProduct(Product product) {
-		// TODO Auto-generated method stub
-
+	public String UpdateProduct(Product product) {
+		
+			try {
+				String sql = "update product set p_name=?,price=?,category=?,image_name=?";
+				jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getCategory(),
+						product.getImageName());
+				return "PRODUCT_UPDATED_SUCCESFULLY";
+			} catch (Exception e) {
+				e.printStackTrace();
+				//System.out.println(e.getMessage());
+				return "PRODUCT_UPDATE_FAILED";
+			}
 	}
 
 	@Override
 	public Product getProductById(int productId) {
-		String sql="select * from product where p_id=?";
-		Product product=jdbcTemplate.queryForObject(sql, new Object[]{productId}, new BeanPropertyRowMapper<Product>(Product.class));
-		return product;
+		try {
+			String sql = "select * from product where p_id=?";
+			Product product = jdbcTemplate.queryForObject(sql, new Object[] { productId },
+					new BeanPropertyRowMapper<Product>(Product.class));
+			return product;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
 	public void addproductToFile(Product product) {
 		try {
-			ObjectOutputStream writer=new ObjectOutputStream(new FileOutputStream("product_objects.txt"));
-			writer.writeObject(product);
+
+			ObjectInputStream reader = new ObjectInputStream(new FileInputStream("C:\\product_objects.txt"));
+			List<Product> productList = (List<Product>) reader.readObject();
+			productList.add(product);
+			reader.close();
+
+			ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("C:\\product_objects.txt"));
+			// ObjectOutputStream writer=new ObjectOutputStream(new
+			// FileOutputStream("product_objects.txt",true));
+
+			writer.writeObject(productList);
 			System.out.println("wrote to file");
 			writer.close();
-			ObjectInputStream reader=new ObjectInputStream(new FileInputStream("product_objects.txt"));
-			Product product1=(Product) reader.readObject();
-			System.out.println(product.getpName());
-			//throw new FileNotFoundException();
-			
+
+			// throw new FileNotFoundException();
+
 		} catch (FileNotFoundException e) {
-			
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
