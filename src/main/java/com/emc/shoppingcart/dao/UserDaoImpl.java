@@ -42,12 +42,12 @@ public class UserDaoImpl implements UserDao {
 			jdbcTemplate.update(sql, user.getUserLname(), user.getUserFname(), user.getEmailId(), user.getPasswrd(),
 					user.getAddressLine1(), user.getAddressLine2(), user.getPhoneNumber(), user.getGender(), 0);
 
-			return "USER_INSERTED_SUCCESFULLY";
+			return "USER_ADDED_SUCCESSFULLY";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			//System.out.println(e.getMessage());
-			return "USER_INSERTION_FAILED";
+			return "COULD_NOT_ADD_USER";
 		}
 
 	}
@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			String sql = "delete from user where email_id=?";
 			jdbcTemplate.update(sql, userName);
-			return "USER_DELETED_SUCCESFULLY";
+			return "USER_DELETED_SUCCESSFULLY";
 		} catch (Exception e) {
 			e.printStackTrace();
 			//System.out.println(e.getMessage());
@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
 			String sql = "update user set user_lname=?,user_fname=?,email_id=?,passwrd=?,address_line1=?,address_line2=?,phone_number=?,gender=?";
 			jdbcTemplate.update(sql, user.getUserLname(), user.getUserFname(), user.getEmailId(), user.getPasswrd(),
 					user.getAddressLine1(), user.getAddressLine2(), user.getPhoneNumber(), user.getGender());
-			return "USER_UPDATED_SUCCESFULLY";
+			return "USER_UPDATED_SUCCESSFULLY";
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,6 +110,20 @@ public class UserDaoImpl implements UserDao {
 			//System.out.println(e.getMessage());
 			return null;
 		}
+	}
+
+	@Override
+	public String insertAdmin(User user) {
+		try{
+		String sql="insert into user(user_lname,user_fname,email_id,passwrd,r_id) values(?,?,?,?,?)";
+		jdbcTemplate.update(sql,user.getUserLname(),user.getUserFname(),user.getEmailId(),user.getPasswrd(),1);
+		return "ADMIN_ADDED_SUCCESSFULLY";
+		}catch(Exception e){
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return "COULD_NOT_ADD_ADMIN";
+		}
+		
 	}
 
 }

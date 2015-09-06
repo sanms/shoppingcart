@@ -33,6 +33,13 @@
             <input type="submit" value="Submit"/>
         </td>
     </tr>
+        </tr>
+    
+    <tr>
+        <td colspan="2">
+            <input type="button" value="Back" onclick="window.location='';" />
+        </td>
+    </tr>
 </table>  
 </form:form>
 </body>

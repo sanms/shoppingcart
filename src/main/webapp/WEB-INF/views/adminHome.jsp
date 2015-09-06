@@ -77,8 +77,6 @@ Welcome ${dataMap.get("user").getUserFname()}
   </tbody>
 </table> 
 </p2>
-<p3>
 
-</p3>
 </body>
 </html>

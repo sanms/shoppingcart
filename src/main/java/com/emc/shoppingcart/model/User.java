@@ -2,17 +2,29 @@ package com.emc.shoppingcart.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class User implements Serializable{
 
 	private long uId;
-	private String userFname;
-	private String userLname;
-	private String emailId;
-	private String passwrd;
-	private String addressLine1;
-	private String addressLine2;
-	private Long phoneNumber;
 	private String gender;
+	@Size(min=2, max=30) 
+	private String userFname;
+	@Size(min=2, max=30) 
+	private String userLname;
+	@NotEmpty @Email
+	private String emailId;
+	@Size(min=8,max=12)
+	private String passwrd;
+	@Size(min=5,max=40)
+	private String addressLine1;
+	
+	private String addressLine2;
+	//@Size(min=10,max=10)
+	private Long phoneNumber;
 	//private Roles role;
 	private int r_id;
 	public int getR_id() {
@@ -23,6 +35,7 @@ public class User implements Serializable{
 		this.r_id = r_id;
 	}
 
+	
 	
 	public User(){
 		

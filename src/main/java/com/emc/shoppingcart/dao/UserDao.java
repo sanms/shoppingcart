@@ -9,6 +9,7 @@ public interface UserDao {
 
 	public User getUser(String userName);
 	public String insertUser(User user);
+	public String insertAdmin(User user);
 	public String deleteUser(String userName);
 	public String updateuser(User user);
 	public List<User> getAllUsers();

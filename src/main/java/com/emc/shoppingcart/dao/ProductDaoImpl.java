@@ -28,7 +28,7 @@ public class ProductDaoImpl implements ProductDao {
 			String sql = "insert into product(p_name,price,category,image_name)values(?,?,?,?) ";
 			jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getCategory(),
 					product.getImageName());
-			return "PRODUCT_UPDATED_SUCCESFULL";
+			return "PRODUCT_ADDED_SUCCESSFULLY";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// System.out.println(e.getMessage());
@@ -56,7 +56,7 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			String sql = "delete from product where p_id=?";
 			jdbcTemplate.update(sql, productId);
-			return "PRODUCT_DELETED_SUCCESFULLY";
+			return "PRODUCT_DELETED_SUCCESSFULLY";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// System.out.println(e.getMessage());
@@ -72,7 +72,7 @@ public class ProductDaoImpl implements ProductDao {
 				String sql = "update product set p_name=?,price=?,category=?,image_name=?";
 				jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getCategory(),
 						product.getImageName());
-				return "PRODUCT_UPDATED_SUCCESFULLY";
+				return "PRODUCT_UPDATED_SUCCESSFULLY";
 			} catch (Exception e) {
 				e.printStackTrace();
 				//System.out.println(e.getMessage());

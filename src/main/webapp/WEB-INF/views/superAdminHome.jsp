@@ -6,9 +6,6 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-admin
-</h1>
 <h2>
 Welcome ${dataMap.get("user").getUserFname()}
 </h2>
@@ -105,7 +102,7 @@ Welcome ${dataMap.get("user").getUserFname()}
 <table>
 <tr></tr>
 <tr>
-<input type="button" value="Add Admin" onclick="window.location='addAdminForm';" />
+<input type="button" value="Add Admin" onclick="window.location='adminRegForm';" />
 </tr></table> 
 </p3>
 </body>

@@ -7,6 +7,7 @@
 
 <h2>user login page</h2>
 <form:form method="POST" action="userLoginSubmit"  commandName="loginForm">
+
    <table>
     <tr>
         <td><form:label path="emailId">Name</form:label></td>

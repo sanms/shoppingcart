@@ -133,6 +133,12 @@ public class UserServiceImpl implements UserService {
 		
 		return userDao.getUser(userName);
 	}
+
+	@Override
+	public String insertAdmin(User user) {
+		
+		return userDao.insertAdmin(user);
+	}
 	
 	
 	

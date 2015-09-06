@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			productDao.addProduct(product);
 			// productDao.addproductToFile(product);
-			return "SUCCESFUL_UPDATE";
+			return "SUCCESSFULL_UPDATE";
 		} catch (Exception e) {
 			return "UPDATE_FAILED";
 		}

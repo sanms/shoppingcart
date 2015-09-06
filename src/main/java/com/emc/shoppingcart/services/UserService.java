@@ -13,4 +13,5 @@ public interface UserService {
 	public List<User> getAllUsers();
 	public String updateUser(User user);
 	public User getUserByUserName(String userName);
+	public String insertAdmin(User user);
 }
