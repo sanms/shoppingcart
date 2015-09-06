@@ -1,15 +1,17 @@
 package com.emc.shoppingcart;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.HashMap;
 import java.util.List;
- 
-import static org.junit.Assert.*; 
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 
 import com.emc.shoppingcart.model.User;
 import com.emc.shoppingcart.services.UserService;
@@ -33,14 +35,60 @@ public class UserTest {
 		assertFalse(userlist.isEmpty());
 	}
 	
-	
+	@Test
 	public void UserLogin(){
-		
-		String username=null;
-		String passWord="";
-		
+		String userName=null;
+		String passwrd="";
+		Map<String,Object> dataMap = userService.userLogin(userName, passwrd);
+		System.out.println(dataMap.get("message"));
+		assertNotNull(dataMap);
+	}
 	
-		
+	@Test
+	public void insertUser(){
+		User user = new User();
+		String response = userService.insertUser(user);
+		System.out.println(response);
+		assertNotNull(response);
+	}
+	
+	@Test
+	public void deleteUser(){
+		String userName = null;
+		String response = userService.deleteUser(userName);
+		System.out.println(response);
+		assertNotNull(response);
+	}
+	
+	@Test
+	public void updateUser(){
+		User user = new User();
+		String response = userService.updateUser(user);
+		System.out.println(response);
+		assertNotNull(response);
+	}
+	
+	@Test
+	public void getAllUsers(){
+		List<User> userList = userService.getAllUsers();
+		System.out.println(userList.size());
+		assertFalse(userList.isEmpty());
+	}
+	
+	@Test
+	public void getUserByUserName(){
+		String userName = null;
+		User user = userService.getUserByUserName(userName);
+		System.out.println(user.getUserFname());
+		assertNotNull(user);
+	}
+	
+	@Test
+	public void insertAdmin(){
+		User user = new User();
+		String response = userService.insertAdmin(user);
+		System.out.println(response);
+		assertNotNull(response);
 	}
 	
 }
