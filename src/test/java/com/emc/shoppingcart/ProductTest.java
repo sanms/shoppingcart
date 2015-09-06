@@ -47,7 +47,7 @@ public class ProductTest {
 	}
 	
 	@Test
-	public void updateteProduct() {
+	public void updateProduct() {
 	    Product product=new Product();//check for null product and missing fields
 		String response=productService.updateProduct(product);
 		System.out.println(response);
