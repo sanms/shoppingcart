@@ -51,7 +51,7 @@ Welcome ${dataMap.get("user").getUserFname()}
 <tr>
 <input type="button" value="Add Product" onclick="window.location='addProductForm';" />
 </tr></table>
-<p2>
+
 <table border="1">
 <thead>
  <tr><h2>User List</h2></tr>

@@ -9,7 +9,7 @@ public interface ProductDao {
 	public String addProduct(Product product);
 	public List<Product> getProducts();
 	public String deleteProduct(long productId);
-	public String UpdateProduct(Product product);
+	public String updateProduct(Product product);
 	public Product getProductById(int productId);
 	public void addproductToFile(Product product);
 }

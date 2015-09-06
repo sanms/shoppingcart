@@ -1,11 +1,11 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title>Spring Form</title>
+    <title>admin registration Form</title>
 </head>
 <body>
-
-<h2>user registration form</h2>
+<center>
+<h2>admin registration form</h2>
 <form:form method="POST" action="adminRegistration"  commandName="adminForm">
    <table>
     <tr>
@@ -26,11 +26,13 @@
     </tr>
     
     <tr>
-        <td colspan="2">
+        <td colspan="3"><center>
             <input type="submit" value="Submit"/>
+            </center>
         </td>
     </tr>
 </table>  
 </form:form>
+</center>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.emc.shoppingcart;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -27,5 +28,29 @@ public class ProductTest {
 		List<Product> productList = productService.getProducts();
 		System.out.println(productList.size());
 		assertFalse(productList.isEmpty());
+	}
+	
+	@Test
+	public void addProduct() {
+		Product product=new Product(); //check for null product and missing fields
+		String response=productService.addProduct(product);
+		System.out.println(response);
+		assertNotNull(response);
+	}
+	
+	@Test
+	public void deleteProduct() {
+		Long productId=null; //check for different ids[existing ,not existing and null]
+		String response=productService.RemoveProduct(productId);
+		System.out.println(response);
+		assertNotNull(response);
+	}
+	
+	@Test
+	public void updateteProduct() {
+	    Product product=new Product();//check for null product and missing fields
+		String response=productService.updateProduct(product);
+		System.out.println(response);
+		assertNotNull(response);
 	}
 }

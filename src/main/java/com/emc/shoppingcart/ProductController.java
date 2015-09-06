@@ -53,7 +53,7 @@ public class ProductController {
 		List<User> userList = userService.getUsersByRoleId(ConstantsClass.USER_ID);
 		dataMap.put("userList", userList);
 
-		if (response.equals("SUCCESSFUL_UPDATE")) {
+		if (response.equals("SUCCESSFULL_UPDATE")) {
 			List<Product> productList = productService.getProducts();
 			dataMap.put("productList", productList);
 			dataMap.put("prod_add_message", response);
@@ -97,5 +97,16 @@ public class ProductController {
 			return "superAdminHome";
 
 	}
+	
+	@RequestMapping(value = "/productBack", method = RequestMethod.GET)
+	public String productbackbutton(Model model, HttpSession session) {
+		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
+		model.addAttribute("dataMap", dataMap);
+		if (dataMap.get("role").equals("admin"))
+			return "adminHome";
+		else
+			return "superAdminHome";
+	}
+	
 	
 }

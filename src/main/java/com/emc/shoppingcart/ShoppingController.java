@@ -74,7 +74,7 @@ public class ShoppingController {
 	}
 	
 
-	@RequestMapping(value = "/adminRegForm", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminRegForm", method = RequestMethod.GET)
 	public String registeradmin( Model model) {
 		User user=new User();
 		model.addAttribute("adminForm",user);

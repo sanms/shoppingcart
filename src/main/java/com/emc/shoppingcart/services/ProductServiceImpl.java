@@ -24,6 +24,8 @@ public class ProductServiceImpl implements ProductService {
 			// productDao.addproductToFile(product);
 			return "SUCCESSFULL_UPDATE";
 		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
 			return "UPDATE_FAILED";
 		}
 	
@@ -43,9 +45,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String UpdateProduct(Product product) {
+	public String updateProduct(Product product) {
 		
-		return productDao.UpdateProduct(product);
+		return productDao.updateProduct(product);
 	}
 
 }

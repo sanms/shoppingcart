@@ -2,15 +2,21 @@ package com.emc.shoppingcart.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Product implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
 	
 	private long pId;
+	@NotEmpty
 	private String pName;
+	@NotEmpty
 	private Float price;
+	@NotEmpty
 	private String category;
+	@NotEmpty
 	private String imageName;
 	
 	public Product() {

@@ -66,7 +66,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public String UpdateProduct(Product product) {
+	public String updateProduct(Product product) {
 		
 			try {
 				String sql = "update product set p_name=?,price=?,category=?,image_name=?";

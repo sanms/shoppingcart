@@ -1,9 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title>Spring Form</title>
+    <title>user login  Form</title>
 </head>
 <body>
+<center>
 
 <h2>user login page</h2>
 <form:form method="POST" action="userLoginSubmit"  commandName="loginForm">
@@ -20,18 +21,18 @@
     <tr>
   		<td></td>	  
         <td>
-            <input type="submit" value="Submit"/>
+          <center>  <input type="submit" value="Submit"/>  </center>
         </td>
   
  </tr>
  <tr>
  <td/>
    <td>
-          <input type="button" value="Register" onclick="window.location='register';" />
+     <center>    <input type="button" value="Register" onclick="window.location='register';" /></center> 
    </td>        
     </tr>
 </table>  
 </form:form>
-
+</center>
 </body>
 </html>

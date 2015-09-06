@@ -46,7 +46,9 @@ Welcome ${dataMap.get("user").getUserFname()}
 <table>
 <tr></tr>
 <tr>
+<td>
 <input type="button" value="Add Product" onclick="window.location='addProductForm';" />
+</td>
 </tr></table>
 <p2>
 <table border="1">
@@ -81,9 +83,9 @@ Welcome ${dataMap.get("user").getUserFname()}
  <tr>
     <th>Name</th>
     <th>Email ID</th>
-    <th>Address</th>
-    <th>Phone number</th>
-    <th>Gender</th>
+   <!--  <th>Address</th> -->
+<!--     <th>Phone number</th>
+    <th>Gender</th> -->
   </tr>
 </thead>
 
@@ -92,9 +94,9 @@ Welcome ${dataMap.get("user").getUserFname()}
     <tr>
       <td>${admin.getUserFname()} ${admin.getUserLname()}</td>
       <td>${admin.getEmailId()}</td>
-      <td>${admin.getAddressLine1()} ${admin.getAddressLine2()}</td>
+<%--       <td>${admin.getAddressLine1()} ${admin.getAddressLine2()}</td>
       <td>${admin.getPhoneNumber()}</td>
-      <td>${admin.getGender()}</td>
+      <td>${admin.getGender()}</td>  --%>
     </tr>
   </c:forEach> 
   </tbody>
