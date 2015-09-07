@@ -73,8 +73,15 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
-	public String deleteProduct(@RequestParam("pId") long productId, Model model, HttpSession session) {
-		String response = productService.RemoveProduct(productId);
+	public String deleteProduct(@RequestParam("prodIductList") List<Integer> prodIductList, Model model, HttpSession session) {
+		
+		String response=null;
+		
+		for(int pid:prodIductList){
+			response = productService.RemoveProduct(pid);
+		}
+			
+		
 		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
 		List<User> userList = userService.getUsersByRoleId(ConstantsClass.USER_ID);
 		dataMap.put("userList", userList);
