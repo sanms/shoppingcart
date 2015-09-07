@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +23,7 @@ import com.emc.shoppingcart.utils.ConstantsClass;
 
 @Controller
 public class ProductController {
-	
-	
+
 	@Autowired
 	UserService userService;
 
@@ -43,49 +43,54 @@ public class ProductController {
 		model.addAttribute("categoryList", categoryList);
 		return "addProduct";
 	}
-	
 
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("addProductForm") Product product, Model model, HttpSession session) {
-		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
-		String response = productService.addProduct(product);
+	public String addProduct(@ModelAttribute("addProductForm") Product product, Model model, HttpSession session,
+			BindingResult bindingResult) {
 
-		List<User> userList = userService.getUsersByRoleId(ConstantsClass.USER_ID);
-		dataMap.put("userList", userList);
-
-		if (response.equals("SUCCESSFULL_UPDATE")) {
-			List<Product> productList = productService.getProducts();
-			dataMap.put("productList", productList);
-			dataMap.put("prod_add_message", response);
+		if (bindingResult.hasErrors()) {
+			return "addProduct";
 		} else {
+			Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
+			String response = productService.addProduct(product);
 
-			dataMap.put("prod_add_message", response);
+			List<User> userList = userService.getUsersByRoleId(ConstantsClass.USER_ID);
+			dataMap.put("userList", userList);
+
+			if (response.equals("SUCCESSFULL_UPDATE")) {
+				List<Product> productList = productService.getProducts();
+				dataMap.put("productList", productList);
+				dataMap.put("prod_add_message", response);
+			} else {
+
+				dataMap.put("prod_add_message", response);
+			}
+
+			model.addAttribute("dataMap", dataMap);
+			session.setAttribute("dataMap", dataMap);
+
+			if (dataMap.get("role").equals("admin"))
+				return "adminHome";
+			else
+				return "superAdminHome";
 		}
-
-		model.addAttribute("dataMap", dataMap);
-		session.setAttribute("dataMap", dataMap);
-
-		if (dataMap.get("role").equals("admin"))
-			return "adminHome";
-		else
-			return "superAdminHome";
 
 	}
 
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
-	public String deleteProduct(@RequestParam("prodIductList") List<Integer> prodIductList, Model model, HttpSession session) {
-		
-		String response=null;
-		
-		for(int pid:prodIductList){
+	public String deleteProduct(@RequestParam("prodIductList") List<Integer> prodIductList, Model model,
+			HttpSession session) {
+
+		String response = null;
+
+		for (int pid : prodIductList) {
 			response = productService.RemoveProduct(pid);
 		}
-			
-		
+
 		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
 		List<User> userList = userService.getUsersByRoleId(ConstantsClass.USER_ID);
 		dataMap.put("userList", userList);
-		
+
 		if (response.equals("PRODUCT_DELETED_SUCCESSFULLY")) {
 			List<Product> productList = productService.getProducts();
 			dataMap.put("productList", productList);
@@ -104,7 +109,7 @@ public class ProductController {
 			return "superAdminHome";
 
 	}
-	
+
 	@RequestMapping(value = "/productBack", method = RequestMethod.GET)
 	public String productbackbutton(Model model, HttpSession session) {
 		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
@@ -114,6 +119,5 @@ public class ProductController {
 		else
 			return "superAdminHome";
 	}
-	
-	
+
 }

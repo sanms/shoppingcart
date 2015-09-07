@@ -17,6 +17,7 @@ p    {color:red}
     <tr>
         <td><form:label path="emailId">Username (email )</form:label></td>
         <td><form:input path="emailId" /></td>
+         <td><form:errors path="emailId" cssclass="error"></form:errors></td> 
         <c:set var="message" value="${response}"/>
 	<c:if test="${(message!=null)}">
 	<p color="red"> <c:out value="${message}"/></p>
@@ -26,21 +27,25 @@ p    {color:red}
     <tr>
         <td><form:label path="passwrd">Password</form:label></td>
         <td><form:input type="password" path="passwrd" /></td>
+        <td><form:errors path="passwrd" cssclass="error"></form:errors></td> 
         
     </tr>
     <tr>
         <td><form:label path="userFname">First Name</form:label></td>
         <td><form:input path="userFname" /></td>
+        <td><form:errors path="userFname" cssclass="error"></form:errors></td> 
         
     </tr>
     <tr>
         <td><form:label path="userLname">Last Name</form:label></td>
         <td><form:input path="userLname" /></td>
+        <td><form:errors path="userLname" cssclass="error"></form:errors></td> 
         
     </tr>
      <tr>
         <td><form:label path="phoneNumber">Phone Number</form:label></td>
         <td><form:input path="phoneNumber" /></td>
+         <td><form:errors path="phoneNumber" cssclass="error"></form:errors></td> 
         
     </tr>
      <tr>
@@ -53,6 +58,7 @@ p    {color:red}
      <tr>
         <td><form:label path="addressLine1">Address Line1</form:label></td>
         <td><form:input path="addressLine1" /></td>
+        <td><form:errors path="addressLine1" cssclass="error"></form:errors></td> 
         
     </tr>
      <tr>

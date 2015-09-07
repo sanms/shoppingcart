@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Product implements Serializable{
 	
 
+	
+
 	private static final long serialVersionUID = 1L;
 	
 	private long pId;
@@ -21,6 +23,14 @@ public class Product implements Serializable{
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Product(String pName, Float price, String category, String imageName) {
+	
+		this.pName = pName;
+		this.price = price;
+		this.category = category;
+		this.imageName = imageName;
 	}
 
 	public long getpId() {

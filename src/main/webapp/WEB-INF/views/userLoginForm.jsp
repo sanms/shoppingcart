@@ -20,10 +20,12 @@ p    {color:red}
     <tr>
         <td><form:label path="emailId">Name</form:label></td>
         <td><form:input path="emailId" /></td>
+         <td><form:errors path="emailId" cssclass="error"></form:errors></td> 
     </tr>
     <tr>
         <td><form:label path="passwrd">Password</form:label></td>
         <td><form:input type="password" path="passwrd" /></td>
+         <td><form:errors path="passwrd" cssclass="error"></form:errors></td>
     </tr>
     <tr>
   		<td></td>	  

@@ -39,6 +39,12 @@ Welcome ${dataMap.get("user").getUserFname()}
       <td>${product.getImageName()}</td>
     </tr>
   </c:forEach> 
+  <td>
+<input type="button" value="Add Product" onclick="window.location='addProductForm';" />
+</td>
+<td>
+<button onclick="delProduct()">Delete product</button>
+</td>
   </tbody>
 </table> 
 
@@ -69,7 +75,7 @@ var test=[];
             }
        	}
         
-      function myFunction() {
+      function delProduct() {
         	
     	  window.location = "deleteProduct?prodIductList=" +test;
 
@@ -96,16 +102,6 @@ var test=[];
         		alert(cel.checked);
         }
 </script> -->
-
-
-
-<button onclick="myFunction()">Delete product</button>
-
-<p id="demo">abcd</p>
-
-
-
-
 
 
 </body>

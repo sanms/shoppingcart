@@ -34,6 +34,7 @@ Welcome ${dataMap.get("user").getUserFname()}
  <tbody> 
  <c:forEach items="${dataMap.get(\"productList\")}" var="product">
     <tr>
+    <td><input type="checkbox" name="products" value="${product.getpId()}" style="cursor: pointer;" onclick="onChangeCheckbox (this)" /></td>
       <td>${product.getpName()}</td>
       <td>${product.getPrice()}</td>
       <td>${product.getCategory()}</td>
@@ -49,6 +50,9 @@ Welcome ${dataMap.get("user").getUserFname()}
 <tr>
 <td>
 <input type="button" value="Add Product" onclick="window.location='addProductForm';" />
+</td>
+<td>
+<button onclick="delProduct()">Delete product</button>
 </td>
 </tr></table>
 <p2>
@@ -126,6 +130,38 @@ checker.onchange = function() {
 function delAdmin() {
 	window.location.href = "deleteAdmin?userName=" + username;
 }
-</script>
+
+
+var test=[];
+
+        function onChangeCheckbox (checkbox) {
+            if (checkbox.checked) 
+            {
+               test.push(checkbox.value);
+            }
+            
+            else 
+            {
+            		var index;
+            		for(i=0;i<test.length;i++)
+            		{
+            			if(test[i]==checkbox.value)
+            			index=i;
+            		}
+            		if(index > -1)
+            		test.splice(index,1);
+            	
+            	
+            }
+       	}
+        
+      function delProduct() {
+        	
+    	  window.location = "deleteProduct?prodIductList=" +test;
+
+        }
+    </script>
+
+
 </body>
 </html>
