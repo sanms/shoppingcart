@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>Home</title>
+
 </head>
 <body>
 <h2>
@@ -94,9 +95,7 @@ Welcome ${dataMap.get("user").getUserFname()}
     <tr>
       <td>${admin.getUserFname()} ${admin.getUserLname()}</td>
       <td>${admin.getEmailId()}</td>
-<%--       <td>${admin.getAddressLine1()} ${admin.getAddressLine2()}</td>
-      <td>${admin.getPhoneNumber()}</td>
-      <td>${admin.getGender()}</td>  --%>
+       <td><input type="checkbox" id="cbox" value="${admin.getEmailId()}"  /></td>
     </tr>
   </c:forEach> 
   </tbody>
@@ -104,8 +103,29 @@ Welcome ${dataMap.get("user").getUserFname()}
 <table>
 <tr></tr>
 <tr>
+<td>
 <input type="button" value="Add Admin" onclick="window.location='adminRegForm';" />
+</td>
+<td>
+<input type="button" id="delAdmin" value="Delete Admin" disabled onclick="delAdmin()" />
+
+</td>
 </tr></table> 
 </p3>
+
+<script type="text/javascript">
+var checker = document.getElementById('cbox');
+var sendbtn = document.getElementById('delAdmin');
+var username;
+checker.onchange = function() {
+  alert("checked");
+  sendbtn.disabled = false;
+  username=checker.value;
+};
+
+function delAdmin() {
+	window.location.href = "deleteAdmin?userName=" + username;
+}
+</script>
 </body>
 </html>

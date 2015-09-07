@@ -31,6 +31,14 @@
             </center>
         </td>
     </tr>
+        <tr>
+    
+        <td colspan="3"><center>
+            <input type="button" value="Back" onclick="window.location='adminBack';" />
+             </center>
+        </td>
+    
+    </tr>
 </table>  
 </form:form>
 </center>

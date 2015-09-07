@@ -39,7 +39,8 @@
     <tr>
     
         <td colspan="3"><center>
-            <input type="button" value="Back" onclick="window.location='/productBack';" />
+            <input type="button" value="Back" onclick="window.location='productBack';" />
+            
              </center>
         </td>
     

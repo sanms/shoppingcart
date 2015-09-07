@@ -1,9 +1,16 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>user login  Form</title>
 </head>
+<style>
+/* body {background-color:lightgray}
+h2   {color:blue} */
+p    {color:red}
+</style>
 <body>
+
 <center>
 
 <h2>user login page</h2>
@@ -33,6 +40,10 @@
     </tr>
 </table>  
 </form:form>
+<c:set var="message" value="${dataMap.get(\"message\")}"/>
+<c:if test="${(message!=null)}">
+<p color="red"> <c:out value="${message}"/></p>
+</c:if>
 </center>
 </body>
 </html>

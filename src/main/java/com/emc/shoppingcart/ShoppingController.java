@@ -31,6 +31,8 @@ public class ShoppingController {
 
 	@Autowired
 	ProductService productService;
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -42,22 +44,21 @@ public class ShoppingController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model, HttpSession session) {
 		User user = new User();
-		model.addAttribute("registerForm", user);
 		List<String> stateList = new ArrayList<String>();
 		stateList.add("Karnataka");
 		stateList.add("kerala");
 		stateList.add("orissa");
 		stateList.add("punjab");
 		stateList.add("goa");
+		model.addAttribute("registerForm", user);
 		model.addAttribute("stateList", stateList);
-		// session.setAttribute("registerForm", user);
-		// session.setAttribute("stateList", stateList);
+		session.setAttribute("stateList", stateList);
 		return "userRegistrationForm";
 	}
 
 	@RequestMapping(value = "/userRegistration", method = RequestMethod.POST)
-	public String signupUser(@ModelAttribute("registerForm") @Valid User user, Model model,
-			BindingResult bindingResult) {
+	public String signupUser(@ModelAttribute("registerForm")  User user, Model model,
+			BindingResult bindingResult,HttpSession session) {
 		if (bindingResult.hasErrors()) {
 			return "userRegistrationForm";
 		} else {
@@ -67,8 +68,15 @@ public class ShoppingController {
 				model.addAttribute("loginForm", login);
 				return "userLoginForm";
 			}else
+			{
+				model.addAttribute("response","user with username already existss");
+				User user1=new User();
+				model.addAttribute("registerForm", user);
+				List<String> stateList = (List<String>)session.getAttribute("stateList");
+				model.addAttribute("stateList",stateList);
 				return "userRegistrationForm";
 				//return "redirect:/register";
+			}
 					
 		}
 	}
@@ -136,6 +144,7 @@ public class ShoppingController {
 
 		Map<String, Object> dataMap = userService.userLogin(user.getEmailId(), user.getPasswrd());
 		model.addAttribute("dataMap", dataMap);
+		System.out.println(dataMap.get("message"));
 
 		if (dataMap.get("message") == null) {
 			session.setAttribute("dataMap", dataMap);
@@ -152,6 +161,13 @@ public class ShoppingController {
 			return "userLoginForm";
 		}
 
+	}
+	
+	@RequestMapping(value = "/adminBack", method = RequestMethod.GET)
+	public String adminbackbutton(Model model, HttpSession session) {
+		Map<String, Object> dataMap = (Map<String, Object>) session.getAttribute("dataMap");
+		model.addAttribute("dataMap", dataMap);
+		return "superAdminHome";
 	}
 	
 

@@ -1,7 +1,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>user registration Form</title>
+    <style>
+    /* body {background-color:lightgray}
+h2   {color:blue} */
+p    {color:red}
+    </style>>
 </head>
 <body>
 <center>
@@ -11,6 +17,10 @@
     <tr>
         <td><form:label path="emailId">Username (email )</form:label></td>
         <td><form:input path="emailId" /></td>
+        <c:set var="message" value="${response}"/>
+	<c:if test="${(message!=null)}">
+	<p color="red"> <c:out value="${message}"/></p>
+	</c:if>
         
     </tr>
     <tr>
